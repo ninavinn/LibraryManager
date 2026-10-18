@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Manager</title>
+    <meta
+      name="description"
+      content="Library management system built with TypeScript."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="app-header">
+        <div>
+          <h1>Library Manager</h1>
+          <p class="tagline">Catalogue, search and keep track of every book.</p>
+        </div>
+        <p class="stats" aria-label="Library statistics">
+          <span><strong id="statTotal">0</strong> books</span>
+          <span class="stat-available"
+            ><strong id="statAvailable">0</strong> available</span
+          >
+          <span class="stat-unavailable"
+            ><strong id="statUnavailable">0</strong> not available</span
+          >
+        </p>
+      </header>
+
+      <div class="layout">
+        <aside class="rail">
+          <section class="panel panel-add" aria-labelledby="addTitle">
+            <h2 id="addTitle">Add a book</h2>
+            <form id="bookForm" novalidate>
+              <div class="field">
+                <label for="bookTitle">Title</label>
+                <input
+                  type="text"
+                  id="bookTitle"
+                  name="title"
+                  maxlength="100"
+                  autocomplete="off"
+                  placeholder="e.g. Refactoring"
+                />
+                <small id="titleError" class="error" role="alert"></small>
+              </div>
+              <div class="field">
+                <label for="bookAuthor">Author</label>
+                <input
+                  type="text"
+                  id="bookAuthor"
+                  name="author"
+                  autocomplete="off"
+                  placeholder="e.g. Martin Fowler"
+                />
+                <small id="authorError" class="error" role="alert"></small>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="bookYear">Year</label>
+                  <input
+                    type="number"
+                    id="bookYear"
+                    name="year"
+                    placeholder="2018"
+                  />
+                </div>
+                <div class="field">
+                  <label for="bookGenre"
+                    >Genre <span class="optional">(optional)</span></label
+                  >
+                  <input
+                    type="text"
+                    id="bookGenre"
+                    name="genre"
+                    autocomplete="off"
+                    placeholder="Programming"
+                  />
+                </div>
+              </div>
+              <small id="yearError" class="error" role="alert"></small>
+              <button type="submit" class="btn btn-brass">Add book</button>
+            </form>
+          </section>
+
+          <section class="panel" aria-labelledby="teamTitle">
+            <h2 id="teamTitle">Library team</h2>
+            <ul id="teamList" class="team"></ul>
+          </section>
+        </aside>
+
+        <main class="board">
+          <section class="toolbar" aria-label="Search and filter">
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search by title"
+              aria-label="Search books by title"
+            />
+            <select id="statusFilter" aria-label="Filter by status">
+              <option value="all">All books</option>
+              <option value="available">Available</option>
+              <option value="unavailable">Not available</option>
+            </select>
+          </section>
+
+          <ul id="bookList" class="book-list" aria-live="polite"></ul>
+        </main>
+      </div>
+
+      <footer class="app-footer">
+        Library Manager · TypeScript, OOP and DOM manipulation
+      </footer>
+    </div>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+    <!-- Compiled JavaScript from src/*.ts. Order matters. -->
+    <script src="dist/models.js"></script>
+    <script src="dist/library.js"></script>
+    <script src="dist/view.js"></script>
+    <script src="dist/main.js"></script>
+  </body>
+</html>
